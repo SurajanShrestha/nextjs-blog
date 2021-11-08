@@ -6,7 +6,7 @@ import { getSortedPostsData } from '../lib/posts'
 import utilStyles from '../styles/utils.module.css'
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
+  const allPostsData = getSortedPostsData()  
   return {
     props: {
       allPostsData
@@ -34,7 +34,7 @@ export default function Home({ allPostsData }) {
       </section>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>Blog <small className={utilStyles.textSm}>Static Site Generation</small></h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
@@ -47,6 +47,17 @@ export default function Home({ allPostsData }) {
               </small>
             </li>
           ))}
+        </ul>
+      </section>
+
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Covid News <small className={utilStyles.textSm}>Server Side Rendering</small></h2>
+        <ul className={utilStyles.list}>
+          <li className={utilStyles.listItem}>
+            <Link href="/covid/nepal">
+              <a>Covid Cases in Nepal</a>
+            </Link>
+          </li>
         </ul>
       </section>
       

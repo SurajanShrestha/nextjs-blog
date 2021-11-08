@@ -3,8 +3,11 @@ import Layout from "../../components/layout";
 import Date from '../../components/date';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import utilStyles from '../../styles/utils.module.css';
+import { useEffect } from 'react';
 
 export async function getStaticProps({ params }) {
+  //console.log(params);
+  //The params here will be which [id] the page belongs to. i.e. If we are in the page /posts/pre-rendering, the params will be { id: 'pre-rendering' }
   const postData = await getPostData(params.id)
   return {
     props: {
@@ -22,6 +25,16 @@ export async function getStaticPaths() {
 }
 
 function Post({ postData }) {
+
+  //Also Using Client-Side Routing 
+  useEffect(()=>{
+    console.log('Hello Next');
+    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+    .then(res=>res.json())
+    .then(jsonRes=>console.log(jsonRes))
+    .catch(err=>console.log(err));
+  },[]);
+
   return (
     <Layout>
       <Head>
